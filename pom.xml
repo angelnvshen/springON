@@ -24,5 +24,23 @@
   </dependencies>
   <build>
     <finalName>test</finalName>
+    <plugins>
+      <!-- Tomcat7 插件 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <configuration>
+          <port>8888</port>
+          <path>/springON</path>
+          <!-- spring profile  -->
+          <systemProperties>
+            <systemProperty>
+              <name>spring.profiles.active</name>
+              <value>development</value>
+            </systemProperty>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
