@@ -11,7 +11,9 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <mvc:annotation-driven />
+    <!-- enable-matrix-variables attribute that should be set to true.
+    By default it is set to false. or matrix variables can't be used-->
+    <mvc:annotation-driven enable-matrix-variables="true"/>
 
     <context:annotation-config />
 
