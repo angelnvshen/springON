@@ -1,1 +1,2 @@
 $ git remote set-url --add origin https://github.com/angelnvshen/springON
+git clone https://github.com/angelnvshen/springON
