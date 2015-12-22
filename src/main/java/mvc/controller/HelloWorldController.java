@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloWorldController {
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping("/helloWorld")
     public String helloWorld(Model model){
         model.addAttribute("message", "Hello World");
