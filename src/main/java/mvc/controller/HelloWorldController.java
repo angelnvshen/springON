@@ -58,9 +58,13 @@ public class HelloWorldController {
         return "matrixValues : " + matrixValues + ", petValues : " + petValues;
     }
 
+    /*
+    * consumes: request 中的 content-type
+    * */
     @ResponseBody
-    @RequestMapping(value = "/addPets", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/addPets", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
     public String addPet(Pet pet , Model model){
+        System.out.println(pet.toString());
         return pet.toString();
     }
 

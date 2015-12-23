@@ -19,6 +19,10 @@
 
     <context:component-scan base-package="mvc.controller" />
 
+    <mvc:default-servlet-handler/>
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
