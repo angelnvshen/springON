@@ -1,10 +1,18 @@
 package mvc.controller;
 
 import mvc.model.Pet;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,10 +76,103 @@ public class HelloWorldController {
         return pet.toString();
     }
 
+    /**
+     * params  :  仅处理请求中包含了名为“name”，值为“angel”的请求；
+     * @param pet
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addPets2", method = RequestMethod.POST, params = "name=angel")
+    public String addPet2(Pet pet , Model model){
+        System.out.println(pet.toString());
+        return pet.toString();
+    }
 
+    /**
+     * headers  :  仅处理request的header中包含了指定“name”请求头和对应值为“lov”的请求；
+     * @param pet
+     * @param model
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addPets3", method = RequestMethod.POST, headers = "name=lov")
+    public String addPet3(Pet pet , Model model){
+        System.out.println(pet.toString());
+        return pet.toString();
+    }
 
+    /**
+     * @RequestBody
+        作用：
+        i) 该注解用于读取Request请求的body部分数据，使用系统默认配置的HttpMessageConverter进行解析，然后把相应的数据绑定到要返回的对象上；
+        ii) 再把HttpMessageConverter返回的对象数据绑定到 controller中方法的参数上。
+        使用时机：
+        A) GET、POST方式提时， 根据request header Content-Type的值来判断:
+            application/x-www-form-urlencoded， 可选（即非必须，因为这种情况的数据@RequestParam, @ModelAttribute也可以处理，当然@RequestBody也能处理）；
+            multipart/form-data, 不能处理（即使用@RequestBody不能处理这种格式的数据）；
+            其他格式， 必须（其他格式包括application/json, application/xml等。这些格式的数据，必须使用@RequestBody来处理）；
+        B) PUT方式提交时， 根据request header Content-Type的值来判断:
+            application/x-www-form-urlencoded， 必须；
+            multipart/form-data, 不能处理；
+            其他格式， 必须；
+        说明：request的body部分的数据编码格式由header部分的Content-Type指定；
+     * @param body
+     * @param writer
+     * @throws IOException
+     */
+    @RequestMapping(value = "/something")
+    public void handle(@RequestBody String body, Writer writer) throws IOException {
+        writer.write(body);
+    }
 
+    /**
+     * The HttpEntity is similar to @RequestBody and @ResponseBody.
+     * Besides getting access to the request and response body,
+     * HttpEntity (and the response-specific subclass ResponseEntity)
+     * also allows access to the request and response headers
+     * @param requestEntity
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/something2")
+    public ResponseEntity<String> handle2(HttpEntity<byte[]> requestEntity) throws IOException {
+        HttpHeaders requestHeader = requestEntity.getHeaders();
+        for(Map.Entry<String, List<String>> entry:requestHeader.entrySet()){
+            String key  = entry.getKey();
+            List<String> values = entry.getValue();
+            System.out.println(key + " : " + values);
+        }
+        byte[] requestBody = requestEntity.getBody();
 
+        System.out.println(new String(requestBody));
 
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("myResponseHeader", "MyValue");
+        return new ResponseEntity<String>(new String(requestBody), responseHeaders , HttpStatus.CREATED);
+    }
+
+    @ModelAttribute
+    public String addAccount(String name ){
+        return "hello " + name;
+    }
+
+    @ModelAttribute
+    public void addAccount2(String name, Model model){
+        model.addAttribute("hurt", " welcom : " + name);
+    }
+
+    @ResponseBody
+    @RequestMapping("/addAccount3")
+    public String addAccount3(@RequestParam String name , HttpServletRequest request){
+        System.out.println(request.getParameter("hurt"));
+        return "hap";
+    }
+    @ResponseBody
+    @RequestMapping("/addAccount4")
+    public String addAccount4(@RequestParam String name , @ModelAttribute(value = "hurt") String hurt){
+        System.out.println(name + " , " + hurt);
+        return "hap";
+    }
 
 }

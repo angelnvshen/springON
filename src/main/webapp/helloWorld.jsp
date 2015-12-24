@@ -18,11 +18,12 @@
         $("#button1").click(function() {
             $.ajax({
                 type:"POST", // 提交方式
-                url:ctx_global+"/addPets", // 路径
+                url:ctx_global+"/addAccount4", // 路径
                 // 预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断
 //                dataType: "json", //contenttype  类型
+                headers:{name:"lov"}, // 设置 header 头信息
                 data:{
-                    name:"tom",
+                    name:"angel",
                     desc:"cat"
                 }, // 数据，这里使用Json格式进行传输
                 success:function(result){//返回数据根据结果进行相应的处理

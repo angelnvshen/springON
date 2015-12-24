@@ -5,7 +5,7 @@ $(function() {
     $("#button1").click(function() {
         $.ajax({
             type:"POST", // 提交方式
-            url:ctx_global+"/addPets", // 路径
+            url:ctx_global+"/addPets2", // 路径
             data:{
                 name:"tom",
                 desc:"cat"
