@@ -1,15 +1,16 @@
 package mvc.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import mvc.model.Pet;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import mvc.model.User;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
@@ -175,4 +176,20 @@ public class HelloWorldController {
         return "hap";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getUser")
+    @JsonView(User.WithPasswordView.class)//Object {username: "eric", password: "7!jd#h23"}
+    public User getUser(HttpServletRequest request,
+                        HttpServletResponse response, Model model) {
+        System.out.println(request.getParameter("user2"));
+        System.out.println(request.getAttribute("user2"));
+        System.out.println(request.getServletPath());// : /getUser
+        System.out.println(request.getContextPath());// : /springON
+        Map<String ,Object> map = model.asMap();
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
+        return new User("eric", "7!jd#h23");
+    }
 }
