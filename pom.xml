@@ -60,6 +60,12 @@
       <version>2.6.3</version>
     </dependency>
 
+    <dependency>
+      <groupId>thirdOwn.java</groupId>
+      <artifactId>jnotify</artifactId>
+      <version>0.94</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>springON</finalName>

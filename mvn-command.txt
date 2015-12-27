@@ -1,0 +1,10 @@
+用maven命令：mvn dependency:sources  下载依赖包的源代码。
+
+MAVEN手工添加第三方jar包（ojdbc14.jar）第三方jar包需要手工添加，命令如下：
+mvn install:install-file -Dfile=E:/maven221/repository/com/oracle/ojdbc14/10.2.0.2.0/ojdbc14-10.2.0.2.0.jar
+-DgroupId=com.org.common.oracle -DartifactId=oracle -Dversion=10.2.0.2.0 -Dpackaging=jar -DgeneratePom=true
+
+
+mvn install:install-file -Dfile=C:/Users/CHANEL/Desktop/jnotify-
+lib-0.94/jnotify-0.94.jar -DgroupId=thirdOwn.java -DartifactId=jnotify -Dversion
+=0.94 -Dpackaging=jar -DgeneratePom=true
