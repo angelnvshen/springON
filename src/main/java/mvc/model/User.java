@@ -27,4 +27,12 @@ public class User {
     public String getPassword() {
         return this.password;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

@@ -18,7 +18,7 @@
         $("#button1").click(function() {
             $.ajax({
                 type:"POST", // 提交方式
-                url:ctx_global+"/getUser", // 路径
+                url:ctx_global+"/redirectView", // 路径
                 // 预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断
 //                dataType: "json", //contenttype  类型
                 headers:{name:"lov"}, // 设置 header 头信息

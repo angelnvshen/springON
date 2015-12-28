@@ -5,6 +5,4 @@ mvn install:install-file -Dfile=E:/maven221/repository/com/oracle/ojdbc14/10.2.0
 -DgroupId=com.org.common.oracle -DartifactId=oracle -Dversion=10.2.0.2.0 -Dpackaging=jar -DgeneratePom=true
 
 
-mvn install:install-file -Dfile=C:/Users/CHANEL/Desktop/jnotify-
-lib-0.94/jnotify-0.94.jar -DgroupId=thirdOwn.java -DartifactId=jnotify -Dversion
-=0.94 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=C:/Users/bf50/Desktop/jnotify-lib-0.94/jnotify-0.94.jar -DgroupId=thirdOwn.java -DartifactId=jnotify -Dversion=0.94 -Dpackaging=jar -DgeneratePom=true

@@ -13,14 +13,14 @@
 
     <!-- enable-matrix-variables attribute that should be set to true.
     By default it is set to false. or matrix variables can't be used-->
-    <mvc:annotation-driven enable-matrix-variables="true"/>
+    <mvc:annotation-driven enable-matrix-variables="true" ignore-default-model-on-redirect="true"/>
 
     <context:annotation-config />
 
     <!--配置文件使用如下方式扫描bean-->
     <context:component-scan base-package="mvc" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+       <!-- <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>-->
     </context:component-scan>
 
     <mvc:default-servlet-handler/>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -191,5 +192,85 @@ public class HelloWorldController {
             System.out.println(entry.getValue());
         }
         return new User("eric", "7!jd#h23");
+    }
+
+    /**
+     * forward 到 view
+     * @param model
+     * @return
+     */
+    @RequestMapping("/forwardView")
+    public String forwardView(Model model){
+        model.addAttribute("userForwad", new User("YIN", "LOV"));
+        Map<String ,Object> map = model.asMap();
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            System.out.print(entry.getKey());
+            System.out.print(" - ");
+            System.out.println(entry.getValue());
+        }
+        return "helloWorld";
+    }
+
+    /**
+     * forward 到 另一个controller mapping
+     * @param model
+     * @return
+     */
+    @RequestMapping("/forwardControllMapping")
+    public String forwardControllMapping(Model model){
+
+        Map<String ,Object> map = model.asMap();
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            System.out.print(entry.getKey());
+            System.out.print(" - ");
+            System.out.println(entry.getValue());
+        }
+        model.addAttribute("userForwad",new User("YIN", "LOIN"));
+        return "forward:getForward";
+    }
+
+    @RequestMapping("/getForward")
+    public String getForward(Model model){
+        System.out.println(" ============== ");
+        Map<String ,Object> map = model.asMap();
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            if(entry.getKey().indexOf("user")!=-1){
+                System.out.print(entry.getKey());
+                System.out.print(" - ");
+                System.out.println(entry.getValue());
+            }
+        }
+        System.out.println(" ============== ");
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            if(entry.getKey().indexOf("user")!=-1){
+                System.out.print(entry.getKey());
+                System.out.print(" - ");
+                System.out.println(entry.getValue());
+            }
+        }
+        System.out.println(" ============== ");
+        model.addAttribute("userForwad",new User("YIN", "LOING"));
+
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            if(entry.getKey().indexOf("user")!=-1){
+                System.out.print(entry.getKey());
+                System.out.print(" - ");
+                System.out.println(entry.getValue());
+            }
+        }
+        return "helloWorld";
+    }
+
+    @RequestMapping("/redirectView")
+    public String redirectView(Model model, RedirectAttributes redirectAttributes){
+        model.addAttribute("userForwad", new User("YIN", "LOV"));
+        Map<String ,Object> map = model.asMap();
+        for(Map.Entry<String, Object> entry : map.entrySet()){
+            System.out.print(entry.getKey());
+            System.out.print(" - ");
+            System.out.println(entry.getValue());
+        }
+        redirectAttributes.addFlashAttribute("userForwad",new User("YIN", "LOS"));
+        return "redirect:getForward";
     }
 }
