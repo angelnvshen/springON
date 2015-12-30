@@ -12,7 +12,8 @@
 <script style="text/javascript" src="${ctx}/static/js/jquery/jquery-1.7.2.min.js" ></script>
 <%--<script style="text/javascript" src="${ctx}/helloWorld.js" ></script>--%>
 <h2>Hello World!</h2>
-<input type="button" value="Button1" id="button1"/>
+<input type="button" value="Button1" id="button1"/><br />
+<input type="button" value="上传文件" id="button2"/>
 <script>
     $(function() {
         $("#button1").click(function() {
@@ -33,6 +34,12 @@
                     console.log("error");
                 }
             })
+        });
+        $("#button2").click(function() {
+            // window.location.href="http://www.jb51.net";     //在同当前窗口中打开窗口
+            // window.open("http://www.jb51.net");                 //在另外新建窗口中打开窗口
+            // window.open(ctx_global+"/uploadFile.jsp");
+            window.open(ctx_global+"/uploadFile");
         });
     });
 </script>

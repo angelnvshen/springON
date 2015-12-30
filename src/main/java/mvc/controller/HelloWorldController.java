@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Writer;
 import java.util.List;
 import java.util.Map;
@@ -273,4 +276,46 @@ public class HelloWorldController {
         redirectAttributes.addFlashAttribute("userForwad",new User("YIN", "LOS"));
         return "redirect:getForward";
     }
+
+    @RequestMapping(value = "uploadFile")
+    public String uploadFile(){
+        return "uploadFile";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String handleFormUpload(@RequestParam("name") String name,
+                                   @RequestParam("file") MultipartFile file) {
+
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                System.out.println(file.getName());
+                System.out.println(file.getOriginalFilename());
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
+                String str = "";
+                while((str = reader.readLine()) != null)
+                    System.out.println(str);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // store the bytes somewhere
+            return "redirect:uploadSuccess";
+        }
+
+        return "redirect:uploadFailure";
+    }
+
+    @RequestMapping("/uploadSuccess")
+
+    public String uploadSuccess(){
+        return "uploadSuccess";
+    }
+
+    @RequestMapping("/uploadFailure")
+    public String uploadFailure(){
+        return "uploadFailure";
+    }
+
 }
