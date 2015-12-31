@@ -1,0 +1,81 @@
+采购单变更 时判断的时候 多加了几个条件
+发送消息时写表（表已存在）
+-- 某个单据号的变更历史查看
+单据号+行项目号 确定某条记录
+
+
+-- 2周计划 查询直接调用接口
+
+
+弹出框 popwindow 中的时间
+
+purOrder页面中 
+ -- 跳转时传值
+ -- 数据显示Css 次数最高时颜色加重
+ 下拉框 
+
+
+ -订单详情 在 结算界面显示 - 根据 文件号。
+  -- jqgrid 列颜色 问题
+  -- 订单详情 写完
+  -- 图片 问题 
+  -- 订单数据问题 看看
+  -- 物料不够18位  加上0
+  -- 订单 详情加上 加载等待。。。
+  -- BPM文档：修改了哪些流程
+  -- 工厂 下拉框 或者类似
+  -- 公告查询
+  -- 名称统一一下
+  -- purordermsglst 页面height
+
+   -- 公告 的 状态等 java中调整 不在js中，显示的地方太多，不容易控制
+
+   --订单 --排序 --三个月 -分页
+
+
+   --订单ie下报错
+
+   --详情数量 格式化
+   
+   下拉框
+
+
+   -- 调整页面 2周 列和 scroll
+
+   订单排序 验证
+
+   
+10.1.103.7
+
+点击事件连续触发时 的处理
+
+
+-- sql语句优化 t_prodplanchange; select * from where import_time and werks;
+
+
+-- 可乐的排序 | sql in 
+南方水泥的最后一个需求：
+
+订单读取的定时任务
+--TTs页面的修改
+
+重新发布下 BPM ssi 
+   
+
+
+
+
+Spring mvc url 的后缀问题，导致js显示是 jsp的内容
+
+PUT 提交方式 
+
+
+@InitBinder
+
+WebDataBinder
+
+
+Servlet 3.0 asynchronous request processing
+
+
+springmvc security

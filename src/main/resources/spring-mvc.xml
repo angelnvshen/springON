@@ -18,8 +18,8 @@
     <context:annotation-config />
 
     <!--配置文件使用如下方式扫描bean-->
-    <context:component-scan base-package="mvc" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <context:component-scan base-package="mvc" use-default-filters="true">
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
        <!-- <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>-->
     </context:component-scan>
 
@@ -56,4 +56,34 @@
         <property name="maxUploadSize" value="100000"/>
 
     </bean>
+
+    <!--
+    Spring MVC处理异常有3种方式：
+        （1）使用Spring MVC提供的简单异常处理器 SimpleMappingExceptionResolver；
+        （2）实现Spring的异常处理接口HandlerExceptionResolver 自定义自己的异常处理器；
+        （3）使用@ExceptionHandler注解实现异常处理；
+     -->
+
+    <!--
+        (1) : SimpleMappingExceptionResolver
+    -->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        &lt;!&ndash; 定义默认的异常处理页面，当该异常类型的注册时使用 &ndash;&gt;
+        <property name="defaultErrorView" value="ex-error"></property>
+        &lt;!&ndash; 定义异常处理页面用来获取异常信息的变量名，默认名为exception &ndash;&gt;
+        <property name="exceptionAttribute" value="ex"></property>
+        &lt;!&ndash; 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 &ndash;&gt;
+        <property name="exceptionMappings">
+            <props>
+                <prop key="mvc.model.BusinessException">ex-error-business</prop>
+                <prop key="mvc.model.ParameterException">ex-error-parameter</prop>
+            </props>
+        </property>
+    </bean>-->
+
+    <!--
+        (2) : 实现HandlerExceptionResolver 接口自定义异常处理器
+    -->
+    <!--<bean id="exceptionHandler" class="mvc.model.MyExceptionHandler"/>-->
+
 </beans>

@@ -8,33 +8,34 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * @ControllerAdvice×¢½âÄÚ²¿Ê¹ÓÃ@ExceptionHandler¡¢@InitBinder¡¢@ModelAttribute×¢½âµÄ·½·¨Ó¦ÓÃµ½ËùÓĞµÄ
- * @RequestMapping×¢½âµÄ·½·¨¡£·Ç³£¼òµ¥£¬²»¹ıÖ»ÓĞµ±Ê¹ÓÃ@ExceptionHandler×îÓĞÓÃ£¬ÁíÍâÁ½¸öÓÃ´¦²»´ó¡£
+ * Created by bf50 on 2015/12/31.
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class ControllerAdviceTest {
-
+    /**
+     * @ControllerAdviceæ³¨è§£å†…éƒ¨ä½¿ç”¨@ExceptionHandlerã€@InitBinderã€@ModelAttributeæ³¨è§£çš„æ–¹æ³•åº”ç”¨åˆ°æ‰€æœ‰çš„
+     * @RequestMappingæ³¨è§£çš„æ–¹æ³•ã€‚éå¸¸ç®€å•ï¼Œä¸è¿‡åªæœ‰å½“ä½¿ç”¨@ExceptionHandleræœ€æœ‰ç”¨ï¼Œå¦å¤–ä¸¤ä¸ªç”¨å¤„ä¸å¤§ã€‚
+     */
     @ModelAttribute
     public User newUser1(){
-        System.out.println("============1Ó¦ÓÃµ½ËùÓĞ@RequestMapping×¢½â·½·¨£¬ÔÚÆäÖ´ĞĞÖ®Ç°°Ñ·µ»ØÖµ·ÅÈëModel");
+        System.out.println("============1åº”ç”¨åˆ°æ‰€æœ‰@RequestMappingæ³¨è§£æ–¹æ³•ï¼Œåœ¨å…¶æ‰§è¡Œä¹‹å‰æŠŠè¿”å›å€¼æ”¾å…¥Model");
         return new User("YIN", "LOV");
     }
-
     @ModelAttribute
     public void newUser2(Model model){
-        System.out.println("============2Ó¦ÓÃµ½ËùÓĞ@RequestMapping×¢½â·½·¨£¬ÔÚÆäÖ´ĞĞÖ®Ç°°Ñ·µ»ØÖµ·ÅÈëModel");
+        System.out.println("============2åº”ç”¨åˆ°æ‰€æœ‰@RequestMappingæ³¨è§£æ–¹æ³•ï¼Œåœ¨å…¶æ‰§è¡Œä¹‹å‰æŠŠè¿”å›å€¼æ”¾å…¥Model");
         model.addAttribute("user2", new User("YIN", "LOV"));
+
     }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        System.out.println("============Ó¦ÓÃµ½ËùÓĞ@RequestMapping×¢½â·½·¨£¬ÔÚÆäÖ´ĞĞÖ®Ç°³õÊ¼»¯Êı¾İ°ó¶¨Æ÷");
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String processUnauthenticatedException(NativeWebRequest request, Exception e) {
-        System.out.println("===========Ó¦ÓÃµ½ËùÓĞ@RequestMapping×¢½âµÄ·½·¨£¬ÔÚÆäÅ×³öUnauthenticatedExceptionÒì³£Ê±Ö´ĞĞ");
-        return "error"; //·µ»ØÒ»¸öÂß¼­ÊÓÍ¼Ãû
+        return "error"; //è¿”å›ä¸€ä¸ªé€»è¾‘è§†å›¾å
     }
+
 }
