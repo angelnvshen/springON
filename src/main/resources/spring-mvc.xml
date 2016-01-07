@@ -86,4 +86,28 @@
     -->
     <!--<bean id="exceptionHandler" class="mvc.model.MyExceptionHandler"/>-->
 
+    <!--
+        RMI
+    -->
+    <!-- server -->
+    <bean id="fileUtil" class="jmi_upload.inter.FileUtilImpl">
+        <!-- any additional properties, maybe a DAO? -->
+    </bean>
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="IFileUtilServer" />
+        <property name="service" ref="fileUtil"/>
+        <property name="serviceInterface" value="jmi_upload.inter.FileUtil"/>
+        <!-- defaults to 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    <!-- client -->
+    <!--<bean id="fileUtilService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://127.0.0.1:1199/IFileUtilServer" />
+        <property name="serviceInterface" value="jmi_upload.inter.FileUtil" />
+    </bean>
+
+    <bean id="fileUtilClient" class="jmi_upload.client.FileUtilClient">
+        <property name="fileUtil" ref="fileUtilService" />
+    </bean>-->
+    
 </beans>
