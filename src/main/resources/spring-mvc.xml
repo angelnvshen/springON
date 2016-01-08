@@ -109,5 +109,39 @@
     <bean id="fileUtilClient" class="jmi_upload.client.FileUtilClient">
         <property name="fileUtil" ref="fileUtilService" />
     </bean>-->
-    
+
+
+    <!--
+        Hessian
+    -->
+    <!--<bean id="hello" class="hessian.inter.IHelloImpl" />
+    &lt;!&ndash;  使用HessianServiceExporter 将普通bean导出成Hessian服务&ndash;&gt;
+    <bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <bean name="/helloHession" class="org.springframework.remoting.caucho.HessianExporter">
+        &lt;!&ndash;  需要导出的目标bean&ndash;&gt;
+        <property name="service" ref="hello" />
+        &lt;!&ndash;  Hessian服务的接口&ndash;&gt;
+        <property name="serviceInterface" value="hessian.inter.IHello"/>
+    </bean>-->
+
+    <bean id="hello" class="hessian.inter.IHelloImpl" />
+    <!--  使用HessianServiceExporter 将普通bean导出成Hessian服务-->
+    <bean name="helloHessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <!--  需要导出的目标bean-->
+        <property name="service" ref="hello" />
+        <!--  Hessian服务的接口-->
+        <property name="serviceInterface" value="hessian.inter.IHello"/>
+    </bean>
+    <!--
+        burlap
+    -->
+    <bean id="foodService" class="burlap.inter.FoodServiceImpl"></bean>
+    <bean id="FoodService" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+        <property name="serviceInterface">
+            <value>burlap.inter.FoodService</value>
+        </property>
+        <property name="service" ref="foodService"/>
+    </bean>
+
 </beans>

@@ -107,6 +107,19 @@
       <version>3.6.7</version>
     </dependency>
 
+    <!-- remote method invoker-->
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>hessian</artifactId>
+      <version>4.0.38</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>burlap</artifactId>
+      <version>2.1.12</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>springON</finalName>
