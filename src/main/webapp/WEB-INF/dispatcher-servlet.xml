@@ -16,6 +16,7 @@
             <props>
                 <prop key="/foodService">FoodService</prop>
                 <prop key="/helloHessian">helloHessian</prop>
+                <prop key="/httpInvokerService">httpInvokerService</prop>
             </props>
         </property>
     </bean>

@@ -144,4 +144,13 @@
         <property name="service" ref="foodService"/>
     </bean>
 
+    <!--
+        httpInvoker
+    -->
+    <bean id="httpInvoker" class="httpInvoker.HttpInvokerServiceImpl" />
+    <bean name="httpInvokerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="httpInvoker"/>
+        <property name="serviceInterface" value="httpInvoker.HttpInvokerService" />
+    </bean>
+
 </beans>
