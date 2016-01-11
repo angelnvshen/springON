@@ -153,4 +153,11 @@
         <property name="serviceInterface" value="httpInvoker.HttpInvokerService" />
     </bean>
 
+    <!--
+        webervice
+    -->
+    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+        <property name="baseAddress" value="http://localhost:8888/"/>
+    </bean>
+
 </beans>
