@@ -79,3 +79,7 @@ Servlet 3.0 asynchronous request processing
 
 
 springmvc security
+
+
+spring learning turtour
+http://krams915.blogspot.com/2010/12/spring-mvc-3-accessing-web-services.html
