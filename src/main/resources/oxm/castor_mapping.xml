@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
+        "http://castor.org/mapping.dtd">
+<mapping>
+    <class name="oxm.model.Settings">
+        <map-to xml="settings.xml"/>
+        <field name="fooEnabled" type="boolean">
+            <bind-xml name="fooEnabled" node="element"/>
+        </field>
+    </class>
+</mapping>

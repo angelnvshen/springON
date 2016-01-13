@@ -3,13 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+        http://www.springframework.org/schema/oxm
+        http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
     <!-- enable-matrix-variables attribute that should be set to true.
     By default it is set to false. or matrix variables can't be used-->
@@ -19,7 +22,7 @@
 
     <!--配置文件使用如下方式扫描bean-->
     <!--<context:component-scan base-package="mvc" use-default-filters="true">-->
-    <context:component-scan base-package="restfulwebservice" use-default-filters="true">
+    <context:component-scan base-package="oxm" use-default-filters="true">
         <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
        <!-- <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>-->
     </context:component-scan>
@@ -160,5 +163,29 @@
     <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
         <property name="baseAddress" value="http://localhost:8888/"/>
     </bean>
+
+    <!--
+      oxm
+    -->
+    <!--  castor -->
+    <!--<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+        <property name="mappingLocation" value="classpath:oxm/castor_mapping.xml"/>
+    </bean>-->
+
+    <oxm:castor-marshaller id="castorMarshaller"
+                           mapping-location="classpath:oxm/castor_mapping.xml" />
+
+    <!--  jaxb2 -->
+    <!--<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>oxm.model.Student</value>
+            </list>
+        </property>
+        <property name="schema" value="classpath:oxm/jaxb2Schema.xsd" />
+    </bean>-->
+    <oxm:jaxb2-marshaller id="jaxb2Marshaller">
+        <oxm:class-to-be-bound name="oxm.model.Student"/>
+    </oxm:jaxb2-marshaller>
 
 </beans>
